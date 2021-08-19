@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,10 @@
 		80A7FA7726C3D6F90038A7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A7FA7526C3D6F90038A7A1 /* Main.storyboard */; };
 		80A7FA7926C3D6FC0038A7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A7FA7826C3D6FC0038A7A1 /* Assets.xcassets */; };
 		80A7FA7C26C3D6FC0038A7A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A7FA7A26C3D6FC0038A7A1 /* LaunchScreen.storyboard */; };
-		80A7FA8B26C3FE160038A7A1 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7FA8A26C3FE160038A7A1 /* ListTableViewController.swift */; };
 		80A7FA8D26C40D8C0038A7A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A7FA8C26C40D8C0038A7A1 /* GoogleService-Info.plist */; };
+		80A7FA8F26C417830038A7A1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7FA8E26C417830038A7A1 /* Animal.swift */; };
+		80A7FA9D26C69C130038A7A1 /* AnimalsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7FA9C26C69C130038A7A1 /* AnimalsListTableViewController.swift */; };
+		80A7FA9F26C6F6590038A7A1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7FA9E26C6F6580038A7A1 /* CustomTableViewCell.swift */; };
 		B01AB31A6848BAAC464E9D6E /* Pods_AnimalsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A7609C99132C6EB669679B /* Pods_AnimalsList.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +30,10 @@
 		80A7FA7826C3D6FC0038A7A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80A7FA7B26C3D6FC0038A7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80A7FA7D26C3D6FC0038A7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80A7FA8A26C3FE160038A7A1 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		80A7FA8C26C40D8C0038A7A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		80A7FA8E26C417830038A7A1 /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		80A7FA9C26C69C130038A7A1 /* AnimalsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListTableViewController.swift; sourceTree = "<group>"; };
+		80A7FA9E26C6F6580038A7A1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C5E9764F8CF477E1A1F10621 /* Pods-AnimalsList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsList.release.xcconfig"; path = "Target Support Files/Pods-AnimalsList/Pods-AnimalsList.release.xcconfig"; sourceTree = "<group>"; };
 		C6A7609C99132C6EB669679B /* Pods_AnimalsList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalsList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -52,7 +56,6 @@
 				3E14D158D069CE505BA28601 /* Pods-AnimalsList.debug.xcconfig */,
 				C5E9764F8CF477E1A1F10621 /* Pods-AnimalsList.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,9 +80,9 @@
 		80A7FA6E26C3D6F90038A7A1 /* AnimalsList */ = {
 			isa = PBXGroup;
 			children = (
-				80A7FA8926C3D87E0038A7A1 /* Views */,
 				80A7FA8426C3D72F0038A7A1 /* Models */,
-				80A7FA8326C3D7130038A7A1 /* Controllers */,
+				80A7FA8926C3D87E0038A7A1 /* Views */,
+				80A7FA8326C3D7130038A7A1 /* Controlers */,
 				80A7FA7826C3D6FC0038A7A1 /* Assets.xcassets */,
 				80A7FA6F26C3D6F90038A7A1 /* AppDelegate.swift */,
 				80A7FA7126C3D6F90038A7A1 /* SceneDelegate.swift */,
@@ -89,18 +92,20 @@
 			path = AnimalsList;
 			sourceTree = "<group>";
 		};
-		80A7FA8326C3D7130038A7A1 /* Controllers */ = {
+		80A7FA8326C3D7130038A7A1 /* Controlers */ = {
 			isa = PBXGroup;
 			children = (
-				80A7FA8A26C3FE160038A7A1 /* ListTableViewController.swift */,
 				80A7FA7326C3D6F90038A7A1 /* AddAnimalViewController.swift */,
+				80A7FA9C26C69C130038A7A1 /* AnimalsListTableViewController.swift */,
+				80A7FA9E26C6F6580038A7A1 /* CustomTableViewCell.swift */,
 			);
-			path = Controllers;
+			path = Controlers;
 			sourceTree = "<group>";
 		};
 		80A7FA8426C3D72F0038A7A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				80A7FA8E26C417830038A7A1 /* Animal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,10 +242,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A7FA9F26C6F6590038A7A1 /* CustomTableViewCell.swift in Sources */,
 				80A7FA7426C3D6F90038A7A1 /* AddAnimalViewController.swift in Sources */,
 				80A7FA7026C3D6F90038A7A1 /* AppDelegate.swift in Sources */,
+				80A7FA9D26C69C130038A7A1 /* AnimalsListTableViewController.swift in Sources */,
 				80A7FA7226C3D6F90038A7A1 /* SceneDelegate.swift in Sources */,
-				80A7FA8B26C3FE160038A7A1 /* ListTableViewController.swift in Sources */,
+				80A7FA8F26C417830038A7A1 /* Animal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = VP.AnimalsList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -418,7 +425,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = VP.AnimalsList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
