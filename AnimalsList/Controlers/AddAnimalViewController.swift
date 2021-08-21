@@ -14,17 +14,13 @@ class AddAnimalViewController: UIViewController {
     @IBOutlet weak var typeText: UITextField!
     @IBOutlet weak var addAnimalButton: UIButton!
     
-    var ref: DatabaseReference!
+    private var ref: DatabaseReference!
     private let refDatabase = Database.database().reference().child("Animals")
+    private var animals = [Animal]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameText.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        typeText.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        addAnimalButton.isEnabled = false
+        
     }
     
     @IBAction func addAnimalPressed(_ sender: UIButton) {
@@ -32,39 +28,25 @@ class AddAnimalViewController: UIViewController {
         clearField()
     }
     
-    func saveAnimal() {
+    private func saveAnimal() {
+        guard let nameText = nameText.text, self.nameText.text != "" else {return}
+        guard let typeText = typeText.text, self.typeText.text != "" else {return}
+                
         let animal: [String: Any] = [
-            "name": nameText.text!,
-            "type": typeText.text!
+            "name": nameText,
+            "type": typeText
         ]
 
         refDatabase.childByAutoId().setValue(animal)
         
     }
     
-    func clearField() {
+    private func clearField() {
         nameText.text = ""
         typeText.text = ""
     }
 }
 
-extension AddAnimalViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-      
-        return true
-    }
-    
-    @objc private func textFieldChanged() {
-        if nameText.text?.isEmpty == false && typeText.text?.isEmpty == false {
-            addAnimalButton.isEnabled = true
-        } else {
-            addAnimalButton.isEnabled = false
-
-        }
-    }
-    
-}
 
 
 

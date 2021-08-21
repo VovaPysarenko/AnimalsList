@@ -12,17 +12,19 @@ import Firebase
 struct Animal {
     let name: String
     let type: String
+    let ref: DatabaseReference?
 //
-//    init(name: String, type: String) {
-//        self.name = name
-//        self.type = type
-//    }
+    init(name: String, type: String) {
+        self.name = name
+        self.type = type
+        self.ref = nil
+    }
 //
     init(snapshot: DataSnapshot) {
         let snapshotValue =  snapshot.value as! [String: AnyObject]
         name = snapshotValue["name"] as! String
         type = snapshotValue["type"] as! String
-//        ref = snapshot.ref
+        ref = snapshot.ref
     }
 //    static let animalsList = [String]()
 //
