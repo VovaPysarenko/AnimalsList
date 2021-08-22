@@ -23,15 +23,11 @@ class AnimalsListTableViewController: UITableViewController {
         getAnimals()
     }
     
-
-        
     // MARK: - Table view data source
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return animals.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
@@ -44,19 +40,7 @@ class AnimalsListTableViewController: UITableViewController {
         return cell
     }
     
-
-    
     // MARK: - Delete row
-    
-//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let animal = animals[indexPath.row]
-//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-//            animal.ref?.removeValue()
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-//            return configuration
-//    }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -65,26 +49,13 @@ class AnimalsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let animal = animals[indexPath.row]
+            animals.remove(at: indexPath.item)
             animal.ref?.removeValue()
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
 
         }
     }
-    
-    
-//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        return.delete
-//    }
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//
-//            tableView.beginUpdates()
-//            animals.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .left)
-//            animal.ref?.removeValue()
-//            tableView.endUpdates()
-//        }
-//    }
+
 
     private func getAnimals() {
         self.ref?.observeSingleEvent(of: .value, with: { [weak self] snapshot in
@@ -100,3 +71,4 @@ class AnimalsListTableViewController: UITableViewController {
     }
     
 }
+

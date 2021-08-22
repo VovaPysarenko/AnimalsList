@@ -14,3 +14,4 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var typeTextField: UITextField!
     
 }
+

@@ -15,11 +15,12 @@ class AddAnimalViewController: UIViewController {
     @IBOutlet weak var addAnimalButton: UIButton!
     
     private var ref: DatabaseReference!
-    private let refDatabase = Database.database().reference().child("Animals")
+//    private let refDatabase = Database.database().reference().child("Animals")
     private var animals = [Animal]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference().child("Animals")
         
     }
     
@@ -37,7 +38,7 @@ class AddAnimalViewController: UIViewController {
             "type": typeText
         ]
 
-        refDatabase.childByAutoId().setValue(animal)
+        ref.childByAutoId().setValue(animal)
         
     }
     
@@ -47,6 +48,12 @@ class AddAnimalViewController: UIViewController {
     }
 }
 
+extension AddAnimalViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
 
 
