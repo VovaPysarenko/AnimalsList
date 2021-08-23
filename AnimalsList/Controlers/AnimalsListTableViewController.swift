@@ -21,6 +21,7 @@ class AnimalsListTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAnimals()
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -53,6 +54,15 @@ class AnimalsListTableViewController: UITableViewController {
             animal.ref?.removeValue()
             tableView.deleteRows(at: [indexPath], with: .automatic)
 
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editAnimal" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let animal = animals[indexPath.row]
+            let newPlaceVC = segue.destination as! AddAnimalViewController
+            newPlaceVC.currentAnimal = animal
         }
     }
 

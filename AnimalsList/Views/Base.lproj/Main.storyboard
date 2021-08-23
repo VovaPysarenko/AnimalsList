@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="AddAnimalViewController" customModule="AnimalsList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sFh-ZN-gYA">
-                                <rect key="frame" x="20" y="158" width="374" height="150"/>
+                                <rect key="frame" x="20" y="114" width="374" height="150"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K4t-6P-ffn">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="65"/>
@@ -41,13 +41,13 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2My-ha-SaU">
-                                <rect key="frame" x="100" y="412" width="214" height="53"/>
+                                <rect key="frame" x="100" y="368" width="214" height="53"/>
                                 <color key="backgroundColor" red="1" green="0.74106575682252129" blue="0.25052354183740366" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Jvn-MO-ArP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="Add animal">
+                                <state key="normal" title="Save animal">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
@@ -69,8 +69,8 @@
                     <tabBarItem key="tabBarItem" title="Add" image="pencil" catalog="system" id="yVh-GB-dkX"/>
                     <navigationItem key="navigationItem" id="ldl-Wq-uqE"/>
                     <connections>
-                        <outlet property="addAnimalButton" destination="2My-ha-SaU" id="2K2-ql-iWD"/>
                         <outlet property="nameText" destination="K4t-6P-ffn" id="tBG-rD-wII"/>
+                        <outlet property="saveAnimalButton" destination="2My-ha-SaU" id="2K2-ql-iWD"/>
                         <outlet property="typeText" destination="hvD-vD-grR" id="ZKW-ma-Vvf"/>
                     </connections>
                 </viewController>
@@ -141,6 +141,7 @@
                                 <connections>
                                     <outlet property="nameTextField" destination="6TU-tD-eXW" id="w97-9t-lKr"/>
                                     <outlet property="typeTextField" destination="M6i-cY-9a9" id="XDc-QR-wqq"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="editAnimal" id="ZqO-KM-Ath"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -175,6 +176,9 @@
             <point key="canvasLocation" x="1365" y="-640"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZqO-KM-Ath"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="pencil" catalog="system" width="128" height="113"/>

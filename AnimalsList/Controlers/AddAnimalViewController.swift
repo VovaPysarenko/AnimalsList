@@ -12,15 +12,17 @@ class AddAnimalViewController: UIViewController {
     
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var typeText: UITextField!
-    @IBOutlet weak var addAnimalButton: UIButton!
+    @IBOutlet weak var saveAnimalButton: UIButton!
     
     private var ref: DatabaseReference!
 //    private let refDatabase = Database.database().reference().child("Animals")
     private var animals = [Animal]()
+    var currentAnimal: Animal?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference().child("Animals")
+        setupEditScreen()
         
     }
     
@@ -37,14 +39,38 @@ class AddAnimalViewController: UIViewController {
             "name": nameText,
             "type": typeText
         ]
-
-        ref.childByAutoId().setValue(animal)
         
+        if currentAnimal != nil {
+            
+            self.ref?.getData { [weak self] (error, snapshot) in
+                if let error = error {
+                    print("Error getting data \(error)")
+                }
+                else if snapshot.exists() {
+                    let current = self?.currentAnimal
+                    current?.ref?.setValue(animal)
+                    self?.dismiss(animated: true, completion: nil)
+                    print("Got data \(snapshot.value!)")
+                }
+                else {
+                    print("No data available")
+                }
+            }
+    } else {
+            ref.childByAutoId().setValue(animal)
+        }
     }
     
     private func clearField() {
         nameText.text = ""
         typeText.text = ""
+    }
+    
+    private func setupEditScreen() {  // экран редактирования
+        if currentAnimal != nil {
+            nameText.text = currentAnimal?.name
+            typeText.text = currentAnimal?.type
+        }
     }
 }
 
