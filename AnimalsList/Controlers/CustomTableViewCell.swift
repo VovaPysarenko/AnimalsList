@@ -10,8 +10,8 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
 
 
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var typeTextField: UITextField!
+    @IBOutlet weak var nameTextField: UILabel!
+    @IBOutlet weak var typeTextField: UILabel!
     
 }
 
