@@ -20,8 +20,11 @@ class AnimalsListTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getAnimals()
-        tableView.reloadData()
+        getAnimals() { animals in
+            self.animals = animals
+            self.tableView.reloadData()
+            print("animals: \(animals) ")
+        }
     }
     
     // MARK: - Table view data source
@@ -67,16 +70,16 @@ class AnimalsListTableViewController: UITableViewController {
     }
 
 
-    private func getAnimals() {
+    private func getAnimals(completion: @escaping (([Animal]) -> Void)) {
         self.ref?.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-
             var _animals = [Animal]()
             for item in snapshot.children {
                 let animal = Animal(snapshot: item as! DataSnapshot)
                 _animals.append(animal)
             }
-            self?.animals = _animals
-            self?.tableView.reloadData()
+            if !_animals.isEmpty {
+                completion(_animals)
+            }
         })
     }
     
