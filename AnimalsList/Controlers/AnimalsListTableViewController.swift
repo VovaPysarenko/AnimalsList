@@ -53,8 +53,9 @@ class AnimalsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let animal = animals[indexPath.row]
+            print("2- \(animal)")
+            deleteAnimal(idKey: animal.id)
             animals.remove(at: indexPath.item)
-            animal.ref?.removeValue()
             tableView.deleteRows(at: [indexPath], with: .automatic)
 
         }
@@ -71,16 +72,40 @@ class AnimalsListTableViewController: UITableViewController {
 
 
     private func getAnimals(completion: @escaping (([Animal]) -> Void)) {
-        self.ref?.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            var _animals = [Animal]()
-            for item in snapshot.children {
-                let animal = Animal(snapshot: item as! DataSnapshot)
-                _animals.append(animal)
+        self.ref?.observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+            guard let data = try? JSONSerialization
+                    .data(withJSONObject: snapshot.value as Any, options: []),
+                  let animal = try? JSONDecoder().decode([String: Animal].self, from: data) else {
+                completion([])
+                return
             }
-            if !_animals.isEmpty {
-                completion(_animals)
+                print("data\(data)")
+                print("animal\(animal)")
+
+                let list = animal.map { $0.value }
+            completion(list)
+                print("list  ----  \(list)")
+            } else {
+                completion([])
             }
+            
+            
+            
+//            var _animals = [Animal]()
+//            for item in snapshot.children {
+//                let animal = Animal(snapshot: item as! DataSnapshot)
+//                _animals.append(animal)
+//            }
+//            if !_animals.isEmpty {
+//                completion(_animals)
+//            }
         })
+    }
+    func deleteAnimal(idKey: String?) {
+        guard let idKey = idKey else {return}
+        ref?.child(idKey).removeValue()
+        print("1- \(idKey)")
     }
     
 }

@@ -14,6 +14,7 @@ class AddAnimalViewController: UIViewController {
     @IBOutlet weak var typeText: UITextField!
     @IBOutlet weak var saveAnimalButton: UIButton!
     
+    
     private var ref: DatabaseReference!
 //    private let refDatabase = Database.database().reference().child("Animals")
     private var animals = [Animal]()
@@ -39,6 +40,7 @@ class AddAnimalViewController: UIViewController {
             "name": nameText,
             "type": typeText
         ]
+        print("fastPrint \(animal)")
         
         if currentAnimal != nil {
             
@@ -48,7 +50,7 @@ class AddAnimalViewController: UIViewController {
                 }
                 else if snapshot.exists() {
                     let current = self?.currentAnimal
-                    current?.ref?.setValue(animal)
+//                    current?.ref?.setValue(animal)
                     self?.dismiss(animated: true, completion: nil)
                     print("Got data \(snapshot.value!)")
                 }

@@ -7,25 +7,27 @@
 
 import Foundation
 import Firebase
+import CodableFirebase
 
-
-struct Animal {
+struct Animal: Codable {
+    let id: String?
     let name: String
     let type: String
-    let ref: DatabaseReference?
+//    let ref: DatabaseReference?
 //
-    init(name: String, type: String) {
+    init(id: String, name: String, type: String) {
+        self.id = id
         self.name = name
         self.type = type
-        self.ref = nil
+//        self.ref = nil
     }
 //
-    init(snapshot: DataSnapshot) {
-        let snapshotValue =  snapshot.value as! [String: AnyObject]
-        name = snapshotValue["name"] as! String
-        type = snapshotValue["type"] as! String
-        ref = snapshot.ref
-    }
+//    init(snapshot: DataSnapshot) {
+//        let snapshotValue =  snapshot.value as! [String: AnyObject]
+//        name = snapshotValue["name"] as! String
+//        type = snapshotValue["type"] as! String
+//        ref = snapshot.ref
+//    }
 //    static let animalsList = [String]()
 //
 //    static func getAnimals() -> [Animal] {
